@@ -1,3 +1,4 @@
+// / <reference path="../../global.d.ts" />
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -15,9 +16,15 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session, token }) {
-      session.accessToken = token.accessToken;
-      session.user.id = token.sub || "";
-      return session;
+      // 전역 증강이 적용되었더라도, 혹시 몰라 object spread를 통해 새로운 객체로 반환합니다.
+      return {
+        ...session,
+        accessToken: token.accessToken,
+        user: {
+          ...session.user,
+          id: token.sub || "",
+        },
+      };
     },
     async jwt({ token, account }) {
       if (account && account.access_token) {

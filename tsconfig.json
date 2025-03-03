@@ -24,7 +24,7 @@
     "typeRoots": [
       "./node_modules/@types",
       "@types",
-      "./global.d.ts",
+      "src/global.d.ts",
       
     ]
   },
