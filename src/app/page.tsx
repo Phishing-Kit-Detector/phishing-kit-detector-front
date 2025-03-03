@@ -5,10 +5,18 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import LoginButton from "@/components/LoginButton";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null; // ✅ 클라이언트에서만 렌더링되도록 변경
 
   const handleLoadingRedirect = () => {
     router.push("/loading"); // ✅ '/loading' 페이지로 이동 후 리포트 페이지로 이동
@@ -63,6 +71,7 @@ export default function Home() {
     </Container>
   );
 }
+
 
 const Container = styled.div`
   display: flex;
