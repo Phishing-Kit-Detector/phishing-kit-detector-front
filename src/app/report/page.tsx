@@ -190,16 +190,12 @@ const RobotContentWrapper = styled.div`
 // 로봇 이미지를 스크롤 시에도 왼쪽 중앙에 고정되도록 styled-component 추가
 const FixedRobotImage = styled(Image)`
   position: fixed;
-  left: 20px;           /* 화면 왼쪽으로부터 20px 간격 */
-  top: 50%;             /* 화면 세로 중앙 */
-  transform: translateY(-50%); /* 이미지의 세로 중앙을 기준으로 위치 조정 */
-  z-index: 1000;        /* 다른 요소보다 위에 표시 */
-
-  /* 뷰포트 크기에 비례한 너비 설정 */
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
   width: 35vw;
-  height: auto;           /* 높이는 너비에 비례해서 자동 조절 */
-
-  /* 너무 커지거나 작아지지 않도록 제한 추가 */
+  height: auto;
   max-width: 500px;
   min-width: 200px;
 `;
@@ -302,9 +298,13 @@ const SourceText = styled.p`
   color: #000;
 `;
 
+/* 수정된 ImageGrid: overflow-x로 가로 스크롤 가능 */
 const ImageGrid = styled.div`
   display: flex;
   gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 10px;
 `;
 
 const SourceImage = styled.img`
