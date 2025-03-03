@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     console.log("📢 Blogger 데이터:", bloggerData);
 
     // Flask 서버로 요청 전송
-    const flaskUrl = "http://127.0.0.1:5000/process_json"; // Flask API 주소
+    const flaskUrl = "http://54.252.133.31:5000/process_json"; // Flask API 주소
     const flaskResponse = await fetch(flaskUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
