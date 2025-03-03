@@ -5,6 +5,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import LoginButton from "@/components/LoginButton";
 import Image from "next/image";
+
 export default function Home() {
   const { data: session } = useSession();
   const router = useRouter();
@@ -19,13 +20,12 @@ export default function Home() {
         {session ? (
           <>
             <LogoWrapper>
-            <Image
-              src="/whoamai-main-logo.svg"
-              width={450}
-              height={500}
-              padding-right={20}
-              alt="location"
-            />
+              <Image
+                src="/whoamai-main-logo.svg"
+                width={450}
+                height={500}
+                alt="location"
+              />
             </LogoWrapper>
             <DescriptionWrapper>
               <Description>
@@ -42,22 +42,21 @@ export default function Home() {
           </>
         ) : (
           <>
-          <LogoWrapper>
-          <Image
-            src="/whoamai-main-logo.svg"
-            width={450}
-            height={500}
-            padding-right={20}
-            alt="location"
-          />
-          </LogoWrapper>
-          <DescriptionWrapper>
-            <Description>
-              Blogger 분석을 통해 노출된 개인정보를 찾아드릴게요! <span>🕵🏻</span> <br />
-              Google 계정으로 로그인 해주세요.
-            </Description>
-          </DescriptionWrapper>
-          <LoginButton />
+            <LogoWrapper>
+              <Image
+                src="/whoamai-main-logo.svg"
+                width={450}
+                height={500}
+                alt="location"
+              />
+            </LogoWrapper>
+            <DescriptionWrapper>
+              <Description>
+                Blogger 분석을 통해 노출된 개인정보를 찾아드릴게요! <span>🕵🏻</span> <br />
+                Google 계정으로 로그인 해주세요.
+              </Description>
+            </DescriptionWrapper>
+            <LoginButton />
           </>
         )}
       </ButtonWrapper>
@@ -65,9 +64,8 @@ export default function Home() {
   );
 }
 
-// ✅ Styled Components (기존 코드 + 내가 추가한 코드 통합)
 const Container = styled.div`
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -84,15 +82,6 @@ const LogoWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-// const Logo = styled.img`
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   color: #000;
-//   width: 400px;
-//   height: 461px;
-// `;
 
 const DescriptionWrapper = styled.div`
   display: flex;
@@ -128,7 +117,6 @@ const ButtonWrapper = styled.div`
   gap: 15px;
 `;
 
-/* ✅ 로그인 정보를 더 크고 강조 */
 const UserInfo = styled.div`
   display: flex;
   align-items: center;
@@ -168,7 +156,6 @@ const LogoutButton = styled.button`
   }
 `;
 
-/* ✅ Blogger 분석하기 버튼 스타일 */
 const ReportButton = styled.button`
   background-color: #007bff;
   color: white;

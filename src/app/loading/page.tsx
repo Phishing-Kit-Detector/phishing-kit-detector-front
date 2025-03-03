@@ -10,7 +10,7 @@ interface BlogPost {
   published: string;
   content?: string;
   image?: { url?: string };
-  imageUrl?: string; // ✅ imageUrl 속성 추가 (대표 이미지 저장)
+  imageUrl?: string;
 }
 
 export default function LoadingPage() {
@@ -23,14 +23,14 @@ export default function LoadingPage() {
     async function fetchPosts() {
       try {
         console.log("📡 Fetching posts...");
-        const res = await fetch("/api/blogger/posts"); // ✅ API 호출
+        const res = await fetch("/api/blogger/posts");
         const data = await res.json();
         console.log("📡 Response:", data);
 
         if (res.ok) {
           const formattedPosts = (data.items || []).map((post: BlogPost) => ({
             ...post,
-            imageUrl: extractImageUrl(post) || "/default-thumbnail.png", // ✅ 대표 이미지 가져오기
+            imageUrl: extractImageUrl(post) || "/default-thumbnail.png",
           }));
           setPosts(formattedPosts);
         } else {
@@ -45,17 +45,16 @@ export default function LoadingPage() {
     fetchPosts();
   }, []);
 
-  // ✅ 게시물에서 대표 이미지 추출하는 함수
   function extractImageUrl(post: BlogPost): string | null {
-    if (post.image?.url) return post.image.url; // ✅ Blogger API의 대표 이미지 사용
+    if (post.image?.url) return post.image.url;
 
     const content = post.content || "";
-    const imgTagMatch = content.match(/<img[^>]+src=["']([^"']+)["']/); // ✅ 본문에서 첫 번째 이미지 추출
+    const imgTagMatch = content.match(/<img[^>]+src=["']([^"']+)["']/);
     return imgTagMatch ? imgTagMatch[1] : null;
   }
 
   return (
-    <PageContainer> {/* ✅ 전체 페이지를 가운데 정렬 */}
+    <PageContainer>
       <Container>
         <Title>📌 Blogger 게시글</Title>
         {loading ? (
@@ -81,7 +80,6 @@ export default function LoadingPage() {
                 <NoPostsText>😕 게시글이 없습니다.</NoPostsText>
               )}
             </PostContainer>
-            {/* 포스트가 하나 이상 있을 때만 리포트 페이지로 이동하는 버튼 표시 */}
             {posts.length > 0 && (
               <ReportButton onClick={() => router.push("/report")}>
                 리포트 페이지에서 결과 보기
@@ -94,7 +92,6 @@ export default function LoadingPage() {
   );
 }
 
-// ✅ Styled Components (4:3 비율 유지 & 중앙 정렬)
 const PageContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -141,7 +138,6 @@ const NoPostsText = styled.p`
   color: #777;
 `;
 
-/* ✅ 한 줄에 3개씩 정렬 + 가운데 정렬 */
 const PostContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -151,7 +147,6 @@ const PostContainer = styled.div`
   justify-content: center;
 `;
 
-/* ✅ 게시물 카드 스타일 (4:3 비율 유지) */
 const PostCard = styled.div`
   background: #ffffff;
   padding: 10px;
@@ -162,13 +157,12 @@ const PostCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid #ddd; /* ✅ 연한 회색 테두리 추가 */
+  border: 2px solid #ddd;
 `;
 
-/* ✅ 4:3 비율의 이미지 박스 */
 const PostImageWrapper = styled.div`
   width: 100%;
-  padding-top: 75%; /* ✅ 4:3 비율 유지 */
+  padding-top: 75%;
   position: relative;
 `;
 
@@ -178,7 +172,7 @@ const PostImage = styled.img`
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* ✅ 이미지 비율 유지 */
+  object-fit: cover;
   border-radius: 8px;
 `;
 
@@ -198,7 +192,6 @@ const PostDate = styled.p`
   margin-top: 3px;
 `;
 
-// 리포트 페이지로 이동하는 버튼 (디자인은 녹색 계열로 변경)
 const ReportButton = styled.button`
   background: #C7E6E5;
   color: #000;
