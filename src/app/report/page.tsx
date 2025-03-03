@@ -45,7 +45,7 @@ const WhoAmAIReport: React.FC = () => {
         }
 
         // 2) Flask 서버로 bloggerData 전체 전송
-        const flaskResponse = await fetch("http://localhost:5000/process_json", {
+        const flaskResponse = await fetch("http://54.252.133.31/process_json", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(bloggerData),
