@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-// AI 응답 데이터의 타입 정의
+// AI 응답 데이터의 타입 정의 크아악악
 interface AIResponse {
   id: string;
   question: string;
