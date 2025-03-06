@@ -45,7 +45,7 @@ const WhoAmAIReport: React.FC = () => {
         }
 
         // 2) Flask 서버로 bloggerData 전체 전송
-        const flaskResponse = await fetch("boonlean.com/process_json", {
+        const flaskResponse = await fetch("https://boonlean.com/process_json", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(bloggerData),
